@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-    <section id="home">
+    <section id="home" class="container">
         <div class="continer-fluid">
             <div class="row">
                 <div class="col-sm mt-5">
@@ -17,7 +17,7 @@
         </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="container">
         <div class="row">
             <h2>Services</h2>
         </div>

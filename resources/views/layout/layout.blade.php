@@ -35,31 +35,38 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{url('/')}}">Home</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="#">Action 1</a>
-                                <a class="dropdown-item" href="#">Action 2</a>
-                            </div>
+                            <a class="nav-link" href="#">Task</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('login')}}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('register')}}">Register</a>
-                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('login') }}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('register') }}">Register</a>
+                            </li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                    <a class="dropdown-item" href="{{ url('dashboard') }}">Dashboard</a>
+                                    <hr>
+                                    <a class="dropdown-item" href="{{ url('signout') }}">Logout</a>
+                                </div>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
-    <main class="container">
+    <main class="">
         @yield('content')
     </main>
     <footer class="bg text-white mt-5">
@@ -102,29 +109,44 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col"><p>Copyright © 2023</p></div>
+                <div class="col">
+                    <p>Copyright © 2023</p>
+                </div>
                 <div class="col-sm">
                     <ul class="nav">
                         <li class="nav-item">
-                            <i class="fa-brands fa-facebook-f"></i>
+                            <a href="http://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                         </li>
                         <li class="nav-item">
-                            <i class="fa-brands fa-instagram"></i>
+                            <a href="http://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         </li>
                         <li class="nav-item">
-                            <i class="fa-brands fa-linkedin-in"></i>
+                            <a href="http://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
                         </li>
                         <li class="nav-item">
-                            <i class="fa-brands fa-twitter"></i>
+                            <a href="http://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                         </li>
                         <li class="nav-item">
-                            <i class="fa-brands fa-youtube"></i>
+                            <a href="http://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        const navItems = document.querySelectorAll('.navbar-nav .nav-item');
+        navItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                navItems.forEach(function(navItem) {
+                    navItem.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
