@@ -62,7 +62,9 @@ img {
     margin: 5%;
     background-color: rgba(125, 91, 166, 0.089);
 }
-#login {
+#login ,
+#update
+{
     margin-top: 7rem;
 }
 #user
@@ -79,6 +81,22 @@ img {
     background-color: #643173;
     color: #fff;
     cursor: pointer;
+}
+.btn-outline-info
+{
+    background-color: #17a2b8 !important;
+}
+.btn-outline-info:hover
+{
+    background-color: #148fa1 !important;
+}
+.btn-outline-danger
+{
+    background-color: #dc3545 !important;
+}
+.btn-outline-danger:hover
+{
+    background-color: #c52e3d !important;
 }
 .dropdown-item:focus
 {
